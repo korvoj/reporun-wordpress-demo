@@ -1,9 +1,0 @@
-version: 1
-
-ingress:
-  - name: app
-    service: adminer
-    port: 8080
-    primary: true
-    access:
-      type: authenticated
