@@ -1,8 +1,8 @@
 services:
   wordpress:
     image: wordpress:php8.2-apache
-    cpus: 0.75
-    mem_limit: 768m
+    cpus: 0.25
+    mem_limit: 500m
     depends_on:
       db:
         condition: service_healthy
@@ -17,8 +17,8 @@ services:
 
   db:
     image: mariadb:11
-    cpus: 0.50
-    mem_limit: 512m
+    cpus: 0.25
+    mem_limit: 500m
     environment:
       MARIADB_DATABASE: ${WORDPRESS_DB_NAME}
       MARIADB_USER: ${WORDPRESS_DB_USER}
