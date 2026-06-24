@@ -18,7 +18,7 @@ services:
   db:
     image: mariadb:11
     cpus: 0.25
-    mem_limit: 500m
+    mem_limit: 450m
     environment:
       MARIADB_DATABASE: ${WORDPRESS_DB_NAME}
       MARIADB_USER: ${WORDPRESS_DB_USER}
