@@ -1,34 +1,6 @@
 services:
-  wordpress:
-    image: wordpress:php8.2-apache
-    cpus: 0.25
-    mem_limit: 500m
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
-      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX:-wp_}
-    volumes:
-      - ./.stack-data/wordpress:/var/www/html
-
-  db:
-    image: mariadb:11
-    cpus: 0.25
-    mem_limit: 450m
-    environment:
-      MARIADB_DATABASE: ${WORDPRESS_DB_NAME}
-      MARIADB_USER: ${WORDPRESS_DB_USER}
-      MARIADB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    volumes:
-      - ./.stack-data/mariadb:/var/lib/mysql
-    healthcheck:
-      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p$${MARIADB_ROOT_PASSWORD} --silent"]
-      interval: 10s
-      timeout: 5s
-      retries: 12
-      start_period: 30s
+  adminer:
+    image: adminer:5.4.2@sha256:4dae499420bb9ba8c5d73745e5c8e02b696acd214b66b5f2946eceee7f171fee
+    container_name: adminer
+    cpus: 0.10
+    mem_limit: 256m
